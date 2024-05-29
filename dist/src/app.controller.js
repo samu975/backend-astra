@@ -30,7 +30,7 @@ let AppController = class AppController {
         }
         const emailData = {
             to: 'saferoxx215@gmail.com',
-            subject: 'Submision form',
+            subject: 'Submission form',
             html: `
         <p>Autores: ${formData.authors}</p>
         <p>Email: ${formData.email}</p>
@@ -40,9 +40,9 @@ let AppController = class AppController {
       `,
             attachments: [
                 {
-                    content: abstractFile,
                     filename: `${formData.abstractTitle}-${formData.authors}.pdf`,
-                    type: abstractFile.mimetype,
+                    path: abstractFile.location,
+                    contentType: abstractFile.mimetype,
                     disposition: 'attachment',
                 },
             ],

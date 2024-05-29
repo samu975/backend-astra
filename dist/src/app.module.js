@@ -13,6 +13,8 @@ const app_service_1 = require("./app.service");
 const config_1 = require("@nestjs/config");
 const mailer_1 = require("@nestjs-modules/mailer");
 const platform_express_1 = require("@nestjs/platform-express");
+const client_s3_1 = require("@aws-sdk/client-s3");
+const multerS3 = require('multer-s3');
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -20,8 +22,27 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             config_1.ConfigModule.forRoot(),
-            platform_express_1.MulterModule.register({
-                dest: './uploads',
+            platform_express_1.MulterModule.registerAsync({
+                useFactory: () => {
+                    const s3 = new client_s3_1.S3Client({
+                        credentials: {
+                            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+                            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+                        },
+                        region: process.env.AWS_REGION,
+                    });
+                    common_1.Logger.log('Configurando S3:', JSON.stringify(s3.config));
+                    return {
+                        storage: multerS3({
+                            s3,
+                            bucket: 'abstracts-uploads',
+                            contentType: multerS3.AUTO_CONTENT_TYPE,
+                            key: (req, file, cb) => {
+                                cb(null, Date.now().toString() + '-' + file.originalname);
+                            },
+                        }),
+                    };
+                },
             }),
             mailer_1.MailerModule.forRoot({
                 transport: {

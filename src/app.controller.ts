@@ -29,7 +29,7 @@ export class AppController {
 
     const emailData = {
       to: 'saferoxx215@gmail.com',
-      subject: 'Submision form',
+      subject: 'Submission form',
       html: `
         <p>Autores: ${formData.authors}</p>
         <p>Email: ${formData.email}</p>
@@ -39,9 +39,9 @@ export class AppController {
       `,
       attachments: [
         {
-          content: abstractFile,
           filename: `${formData.abstractTitle}-${formData.authors}.pdf`,
-          type: abstractFile.mimetype,
+          path: abstractFile.location, // Usar la URL proporcionada por multer-S3
+          contentType: abstractFile.mimetype,
           disposition: 'attachment',
         },
       ],
