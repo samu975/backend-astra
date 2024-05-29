@@ -4,10 +4,14 @@ import { AppService } from './app.service';
 
 import { ConfigModule } from '@nestjs/config';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    MulterModule.register({
+      dest: './uploads',
+    }),
     MailerModule.forRoot({
       transport: {
         host: 'smtp.sendgrid.net',
