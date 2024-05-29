@@ -11,7 +11,7 @@ async function bootstrap() {
       'http://127.0.0.1:5500',
     ],
     methods: 'POST',
-    credentials: true,
+    credentials: false,
   });
 
   await app.listen(4000);
