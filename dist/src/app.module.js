@@ -13,6 +13,7 @@ const app_service_1 = require("./app.service");
 const config_1 = require("@nestjs/config");
 const platform_express_1 = require("@nestjs/platform-express");
 const mailer_1 = require("@nestjs-modules/mailer");
+const multer_1 = require("multer");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -21,7 +22,7 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             config_1.ConfigModule.forRoot(),
             platform_express_1.MulterModule.register({
-                dest: './uploads',
+                storage: multer_1.default.memoryStorage(),
             }),
             mailer_1.MailerModule.forRoot({
                 transport: {
