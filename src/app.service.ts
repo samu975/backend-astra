@@ -9,4 +9,8 @@ export class AppService {
   async sendEmail(emailData: any) {
     await this.mailerService.sendMail(emailData);
   }
+
+  getHello(): string {
+    return 'Hello World!';
+  }
 }
