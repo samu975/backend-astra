@@ -3,16 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { ConfigModule } from '@nestjs/config';
-import { MulterModule } from '@nestjs/platform-express';
 import { MailerModule } from '@nestjs-modules/mailer';
-import multer from 'multer';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MulterModule.register({
-      storage: multer.memoryStorage(),
-    }),
     MailerModule.forRoot({
       transport: {
         host: 'smtp.sendgrid.net',
