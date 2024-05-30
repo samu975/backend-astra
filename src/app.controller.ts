@@ -28,8 +28,7 @@ export class AppController {
     }
 
     const emailData = {
-      // to: 'voyagerudea@gmail.com',
-      to: 'ange5111@outlook.com',
+      to: 'voyagerudea@gmail.com',
       subject: 'Submission form',
       html: `
         <p>Autores: ${formData.authors}</p>
