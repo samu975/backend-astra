@@ -29,7 +29,7 @@ let AppController = class AppController {
             return { success: false, message: 'No file attached' };
         }
         const emailData = {
-            to: 'saferoxx215@gmail.com',
+            to: 'ange5111@outlook.com',
             subject: 'Submission form',
             html: `
         <p>Autores: ${formData.authors}</p>
