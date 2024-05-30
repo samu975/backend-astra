@@ -10,6 +10,7 @@ async function bootstrap() {
       'https://astra-ae.co',
       'http://localhost:3000',
       'http://127.0.0.1:5500',
+      'http://127.0.0.1:4000/',
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
